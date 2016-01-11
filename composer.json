@@ -1,0 +1,25 @@
+{
+    "name": "hmphu/fortnox",
+    "description": "Fortnox API Implement in PHP",
+    "type": "library",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Phu Hoang",
+            "email": "me@hmphu.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+    },
+    "autoload": {
+        "psr-4": {
+            "hmphu\\fortnox\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "hmphu\\fortnox\\": "src"
+        }
+    }
+}
