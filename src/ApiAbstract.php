@@ -4,12 +4,13 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 13:19:26
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-11 17:46:10
+ * @Last Modified time: 2016-01-12 19:10:10
  */
 
 namespace hmphu\fortnox;
 
 use GuzzleHttp\Client;
+use hmphu\fortnox\request\Exception;
 
 /**
  * Class ApiAbstract
@@ -33,13 +34,18 @@ abstract class ApiAbstract
      * @var FortnoxConfig
      */
     protected $config;
+
+    /**
+     * @var string
+     */
+    protected $accessToken;
     
     /**
      * @param $config
      */
     function __construct(FortnoxConfig $config, $https = true) {
     	$this->config = $config;
-    	$this->url = $https ? 'https://' : 'http://' . self::API_URL;
+    	$this->url = ($https ? 'https://' : 'http://') . self::API_URL;
     }
     
     /**
@@ -47,23 +53,35 @@ abstract class ApiAbstract
      * @param RequestInterface $request
      * @return mixed
      */
-    public function call($endpoint, RequestInterface $request) {
-    	$parameters = array_merge($this->config->getParameterArray(), $request->getParameterArray());
-    	$res = $this->httpClient->request(
-			$request->method,
-			$this->url . $endpoint,
-			array_merge([
-				'headers' => [
-					'Content-Type' => 'application/json',
-					'Accept' => 'application/json',
-					'Client-Secret' => $this->config->clientSecret,
-					'Access-Token' => $this->config->accessToken
-				]
-			], $parameters)
-        );
+    public function call($endpoint, $request) {
+    	$client = new Client();
 
-    	$this->response = $res;
-    	return $res;
+    	$parameters = array_merge($this->config->getParameterArray(), $request->getParameterArray());
+    	try {
+    		$res = $client->request(
+				$request->method,
+				$this->url . $endpoint,
+				array_merge([
+					'headers' => [
+						'Content-Type' => 'application/json',
+						'Accept' => 'application/json',
+						'Client-Secret' => $this->config->clientSecret,
+						'Access-Token' => $this->config->accessToken
+					]
+				], $parameters)
+	        );
+
+	    	$this->response = $res;
+	    	return $res;	
+    	} catch (\Exception $e) {
+    		preg_match('/{"ErrorInformation":{"Error":(\d+),"Message":"(.+)","Code":(\d+)}}/i', $e->getMessage(), $matches);
+    		if(isset($matches[0])){
+    			throw new Exception(sprintf("ERROR: %s (%s)",$matches[2],$matches[3]),$matches[3]);
+    		}
+    		throw $e;
+    	}
+
+    	return false;
     }
 
     /**
@@ -73,7 +91,7 @@ abstract class ApiAbstract
      * @param array $options
      * @return array
      */
-    protected function callJson($endpoint, RequestInterface $request, $dataKey = '') {
+    protected function callJson($endpoint, $request, $dataKey = '') {
     	$res = $this->call($endpoint, $request);
     	$json = $this->parseJsonResponse($res);
     	if ( $dataKey !== '' ) {
@@ -89,7 +107,7 @@ abstract class ApiAbstract
      * @param array $options
      * @return array
      */
-     protected function getPaginated($endpoint, RequestInterface $request, $dataKey) {
+     protected function getPaginated($endpoint, $request, $dataKey) {
      	$response = $this->call($endpoint, $request);
      	$parsed = $this->parseJsonResponse($response);
      	$items = $parsed[$dataKey];
@@ -103,10 +121,10 @@ abstract class ApiAbstract
      }
      
      /**
-     * @param ResponseInterface $res
+     * @param Respond $res
      * @return array
      */
-     protected function parseJsonResponse(ResponseInterface $res) {
+     protected function parseJsonResponse($res) {
      	return json_decode((string) $res->getBody(), $assoc = true);
      }
 

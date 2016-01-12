@@ -3,10 +3,19 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 16:14:20
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-11 17:44:17
+ * @Last Modified time: 2016-01-12 15:57:59
  */
 
 namespace hmphu\fortnox;
+
+use hmphu\fortnox\request\BasicRequest;
+use hmphu\fortnox\request\CustomerRequest;
+use hmphu\fortnox\request\FileRequest;
+use hmphu\fortnox\request\SupplierInvoiceFileConnectionRequest;
+use hmphu\fortnox\request\SupplierInvoiceRequest;
+use hmphu\fortnox\request\ProjectRequest;
+use hmphu\fortnox\request\QueryRequest;
+use hmphu\fortnox\request\JsonRequest;
 
 /**
  * Class FortnoxApi
