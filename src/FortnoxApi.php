@@ -3,19 +3,23 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 16:14:20
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-12 15:57:59
+ * @Last Modified time: 2016-01-13 10:22:17
  */
 
 namespace hmphu\fortnox;
 
 use hmphu\fortnox\request\BasicRequest;
 use hmphu\fortnox\request\CustomerRequest;
+use hmphu\fortnox\request\SupplierRequest;
 use hmphu\fortnox\request\FileRequest;
 use hmphu\fortnox\request\SupplierInvoiceFileConnectionRequest;
 use hmphu\fortnox\request\SupplierInvoiceRequest;
 use hmphu\fortnox\request\ProjectRequest;
 use hmphu\fortnox\request\QueryRequest;
 use hmphu\fortnox\request\JsonRequest;
+use hmphu\fortnox\models\Project;
+use hmphu\fortnox\models\Customer;
+use hmphu\fortnox\models\Supplier;
 
 /**
  * Class FortnoxApi
@@ -44,17 +48,23 @@ class FortnoxApi extends ApiAbstract
      */
     public function getCustomer($customerNumber) {
     	$request = new CustomerRequest();
-        return $this->callJson('/customers/' . $customerNumber, $request, 'Customer');
+        $data = $this->callJson('/customers/' . $customerNumber, $request, 'Customer');
+        if(is_array($data)){
+        	return new Customer($data);
+        }
     }
     
     /**
      * @param string[] $data customer data
      * @return string[] customer
      */
-    public function createCustomer(array $data) {
-    	$request = new CustomerRequest($data);
+    public function createCustomer(Customer $data) {
+    	$request = new CustomerRequest($data->toArray());
     	$request->method = 'POST';
-        return $this->callJson('/customers', $request, 'Customer');
+        $data = $this->callJson('/customers', $request, 'Customer');
+        if(is_array($data)){
+        	return new Customer($data);
+        }
     }
 
      /**
@@ -62,10 +72,13 @@ class FortnoxApi extends ApiAbstract
      * @param string[] $data
      * @return string[] customer
      */
-    public function updateCustomer($customerNumber, array $data) {
-    	$request = new CustomerRequest($data);
+    public function updateCustomer($customerNumber, Customer $data) {
+    	$request = new CustomerRequest($data->toArray());
     	$request->method = 'PUT';
-        return $this->callJson('/customers/' . $customerNumber, $request, 'Customer');
+        $data = $this->callJson('/customers/' . $customerNumber, $request, 'Customer');
+        if(is_array($data)){
+        	return new Customer($data);
+        }
     }
 
     /**
@@ -76,7 +89,7 @@ class FortnoxApi extends ApiAbstract
     	$request = new CustomerRequest();
     	$request->method = 'DELETE';
         $response = $this->call('/customers/' . $customerNumber, $request);
-        return (string) $response->getBody();
+        return  empty($response->getBody()) ? true : (string) $response->getBody();
     }
 
     /**
@@ -93,7 +106,37 @@ class FortnoxApi extends ApiAbstract
      */
     public function getSupplier($id) {
     	$request = new BasicRequest();
-        return $this->callJson('/suppliers/' . $id, $request, 'Supplier');
+        $data = $this->callJson('/suppliers/' . $id, $request, 'Supplier');
+        if(is_array($data)){
+        	return new Supplier($data);
+        }
+    }
+
+    /**
+     * @param Supplier $data
+     * @return Supplier
+     */
+    public function createSupplier(Supplier $data) {
+    	$request = new SupplierRequest($data->toArray());
+    	$request->method = 'POST';
+        $data = $this->callJson('/suppliers', $request, 'Supplier');
+        if(is_array($data)){
+        	return new Supplier($data);
+        }
+    }
+
+    /**
+     * @param string SupplierNumber
+     * @param Supplier $data
+     * @return Supplier
+     */
+    public function updateSupplier($supplierNumber, Supplier $data) {
+    	$request = new SupplierRequest($data->toArray());
+    	$request->method = 'PUT';
+        $data = $this->callJson('/suppliers/' . $supplierNumber, $request, 'Supplier');
+        if(is_array($data)){
+        	return new Supplier($data);
+        }
     }
 
     /**
@@ -114,7 +157,7 @@ class FortnoxApi extends ApiAbstract
     	$request = new BasicRequest();
     	$request->method = 'DELETE';
         $response = $this->sendRequest('/inbox/' . $id, $request);
-        return (string) $response->getBody();
+        return  empty($response->getBody()) ? true : (string) $response->getBody();
     }
 
     /**
@@ -201,15 +244,18 @@ class FortnoxApi extends ApiAbstract
      */
     public function getProject($projectNumber) {
     	$request = new ProjectRequest();
-        return $this->callJson('/projects/' . $projectNumber, $request, 'Project');
+        $data = $this->callJson('/projects/' . $projectNumber, $request, 'Project');
+        if(is_array($data)){
+    		return new Project($data);
+    	}
     }
 
     /**
      * @param string[] $data
      * @return string[] project
      */
-    public function createProject(array $data) {
-    	$request = new ProjectRequest($data);
+    public function createProject(Project $data) {
+    	$request = new ProjectRequest($data->toArray());
     	$request->method = 'POST';
 
         return $this->callJson('/projects', $request, 'Project');
@@ -217,11 +263,11 @@ class FortnoxApi extends ApiAbstract
 
     /**
      * @param int $projectNumber
-     * @param string[] $data
+     * @param Project $data
      * @return mixed
      */
-    public function updateProject($projectNumber, array $data) {
-    	$request = new ProjectRequest($data);
+    public function updateProject($projectNumber, Project $data) {
+    	$request = new ProjectRequest($data->toArray());
     	$request->method = 'PUT';
 
         return $this->callJson('/projects/' . $projectNumber, $request, 'Project');

@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 13:19:26
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-12 19:10:10
+ * @Last Modified time: 2016-01-12 19:30:05
  */
 
 namespace hmphu\fortnox;
@@ -74,7 +74,7 @@ abstract class ApiAbstract
 	    	$this->response = $res;
 	    	return $res;	
     	} catch (\Exception $e) {
-    		preg_match('/{"ErrorInformation":{"Error":(\d+),"Message":"(.+)","Code":(\d+)}}/i', $e->getMessage(), $matches);
+    		preg_match('/{"ErrorInformation":{"Error":(\d+),"Message":"(.+)","Code":(\d+)}/i', $e->getMessage(), $matches);
     		if(isset($matches[0])){
     			throw new Exception(sprintf("ERROR: %s (%s)",$matches[2],$matches[3]),$matches[3]);
     		}

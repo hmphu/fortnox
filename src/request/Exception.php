@@ -3,7 +3,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-12 18:19:46
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-12 19:07:35
+ * @Last Modified time: 2016-01-13 09:07:23
  */
  
 namespace hmphu\fortnox\request;
@@ -15,7 +15,7 @@ namespace hmphu\fortnox\request;
 class Exception extends \Exception
 {
 	private $_descriptions = array(
-        '1000003' => 'Something went wrong on our end, please contact us.',
+        '1000003' => 'Something went wrong on our end, please <a href="http://developer.fortnox.se/contact/">contact us.</a>',
 		'1000030' => 'The provided response type(Accept) was invalid.',
 		'1000031' => 'The provided content type was invalid.',
 		'2000106' => 'The value needs to be alphanumeric.',
@@ -24,7 +24,7 @@ class Exception extends \Exception
 		'2000310' => 'The Client-Secret or the Access-Token is either missing or is incorrect.',
 		'2000311' => 'The Client-Secret or the Access-Token is either missing or is incorrect.',
 		'2000359' => 'The value contains invalid characters.',
-		'2000588' => 'A parameter is invalid. Read more about parameters.',
+		'2000588' => 'A parameter is invalid. <a href="http://developer.fortnox.se/documentation/general/parameters/">Read more about parameters.</a>',
 		'2000729' => 'A valid identifier was not provided.',
 		'2001103' => 'The requested Fortnox account does not have a license to use the API',
 		'2001392' => 'The request body was empty or contained incorrect data.',
