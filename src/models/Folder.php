@@ -3,7 +3,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:35:10
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 10:36:43
+ * @Last Modified time: 2016-01-13 15:35:21
  */
  
  namespace hmphu\fortnox\models;
@@ -15,7 +15,8 @@
 class Folder extends BaseModel
 {
 	/**
-	 * @var string Folder name
+	 * @var string
+	 * Folder name
 	 */
 	public $Name;
 
