@@ -2,22 +2,22 @@
 
 /**
  * @Author: Phu Hoang
- * @Date:   2016-01-13 10:37:45
+ * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 18:16:00
+ * @Last Modified time: 2016-01-14 09:44:22
  */
 
 namespace hmphu\fortnox\models;
 
 /**
- * Class ContractAccrualRow
+ * Class InvoiceAccrualRow
  * @package hmphu\fortnox\models
  */
-class ContractAccrualRow extends BaseModel
+class InvoiceAccrualRow extends BaseModel
 {
     
     /**
-     * Account number 	4 digits
+     * Account number, 4 digits
      * @var integer
      */
     public $Account;

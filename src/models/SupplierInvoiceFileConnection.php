@@ -2,18 +2,18 @@
 
 /**
  * @Author: Phu Hoang
- * @Date:   2016-01-13 10:35:10
+ * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 18:01:52
+ * @Last Modified time: 2016-01-14 10:51:51
  */
 
 namespace hmphu\fortnox\models;
 
 /**
- * Class Folder
+ * Class SupplierInvoiceFileConnection
  * @package hmphu\fortnox\models
  */
-class Folder extends BaseModel
+class SupplierInvoiceFileConnection extends BaseModel
 {
     
     /**
@@ -23,32 +23,26 @@ class Folder extends BaseModel
     private $Url;
     
     /**
-     * Unique email for the folder
+     * Id of the file
      * @var string
      */
-    private $Email;
+    public $FileId;
     
     /**
-     * List of files
+     * Name of the file
      * @var string
      */
-    private $Files;
+    private $Name;
     
     /**
-     * List of folders
+     * Supplier invoice number
      * @var string
      */
-    private $Folders;
+    public $SupplierInvoiceNumber;
     
     /**
-     * Id of the folder
+     * Name of the supplier
      * @var string
      */
-    private $Id;
-    
-    /**
-     * Name of the folder
-     * @var string
-     */
-    public $Name;
+    private $SupplierName;
 }

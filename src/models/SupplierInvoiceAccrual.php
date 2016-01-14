@@ -2,18 +2,18 @@
 
 /**
  * @Author: Phu Hoang
- * @Date:   2016-01-13 10:37:45
+ * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 18:14:48
+ * @Last Modified time: 2016-01-14 10:43:50
  */
 
 namespace hmphu\fortnox\models;
 
 /**
- * Class ContractAccrual
+ * Class SupplierInvoiceAccrual
  * @package hmphu\fortnox\models
  */
-class ContractAccrual extends BaseModel
+class SupplierInvoiceAccrual extends BaseModel
 {
     
     /**
@@ -23,36 +23,52 @@ class ContractAccrual extends BaseModel
     private $Url;
     
     /**
-     * Account for the accrual 	4 digits
+     * Account for the accrual, 4 digits
      * @var integer
      */
     public $AccrualAccount;
     
     /**
-     * Account for the cost 	4 digits
+     * Account for the cost, 4 digits
      * @var integer
      */
     public $CostAccount;
     
     /**
-     * Description
+     * Description of the accrual
      * @var string
      */
     public $Description;
     
-    private $AccrualRows;
+    /**
+     * End date
+     * @var date
+     */
+    public $EndDate;
     
     /**
-     * Document number
+     * Number of the supplier invoice
      * @var integer
      */
-    public $DocumentNumber;
+    public $SupplierInvoiceNumber;
     
     /**
-     * Type of period: MONTHLY / BIMONTHLY / QUARTERLY / SEMIANNUALLY / ANNUALLY
+     * Type of period
+     * Can be: MONTHLY / BIMONTHLY / QUARTERLY / SEMIANNUALLY / ANNUALLY / {X}_MONTHS
      * @var string
      */
-    private $Period;
+    public $Period;
+    
+    /**
+     * @var object
+     */
+    private $SupplierInvoiceAccrualRows;
+    
+    /**
+     * Start date
+     * @var date
+     */
+    public $StartDate;
     
     /**
      * Total times of accruals

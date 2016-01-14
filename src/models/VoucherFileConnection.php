@@ -2,18 +2,18 @@
 
 /**
  * @Author: Phu Hoang
- * @Date:   2016-01-13 10:35:10
+ * @Date:   2016-01-13 10:14:56
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 18:01:52
+ * @Last Modified time: 2016-01-14 11:15:48
  */
 
 namespace hmphu\fortnox\models;
 
 /**
- * Class Folder
+ * Class VoucherFileConnection
  * @package hmphu\fortnox\models
  */
-class Folder extends BaseModel
+class VoucherFileConnection extends BaseModel
 {
     
     /**
@@ -23,32 +23,32 @@ class Folder extends BaseModel
     private $Url;
     
     /**
-     * Unique email for the folder
+     * Id of the file
      * @var string
      */
-    private $Email;
+    public $FileId;
     
     /**
-     * List of files
+     * Description of the voucher
      * @var string
      */
-    private $Files;
+    private $VoucherDescription;
     
     /**
-     * List of folders
+     * Voucher number
      * @var string
      */
-    private $Folders;
+    public $VoucherNumber;
     
     /**
-     * Id of the folder
+     * Voucher series
      * @var string
      */
-    private $Id;
+    public $VoucherSeries;
     
     /**
-     * Name of the folder
+     * Voucher year
      * @var string
      */
-    public $Name;
+    private $VoucherYear;
 }
