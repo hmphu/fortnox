@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:14:56
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 11:09:07
+ * @Last Modified time: 2016-01-14 16:58:55
  */
 
 namespace hmphu\fortnox\models;
@@ -206,7 +206,7 @@ class Supplier extends BaseModel
      * VAT Type. Can be: REVERSE / NORMAL / EUINTERNAL
      * @var string
      */
-    public $VATType;
+    public $VATType = 'REVERSE';
     
     /**
      * Visiting address

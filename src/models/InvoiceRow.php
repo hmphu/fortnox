@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:37:45
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 10:03:15
+ * @Last Modified time: 2016-01-14 16:57:36
  */
 
 namespace hmphu\fortnox\models;
@@ -69,7 +69,7 @@ class InvoiceRow extends BaseModel
      * Can be AMOUNT / PERCENT
      * @var number
      */
-    public $DiscountType;
+    public $DiscountType = 'AMOUNT';
     
     /**
      * @var boolean
@@ -89,7 +89,7 @@ class InvoiceRow extends BaseModel
      * TUTORING, OTHERCOSTS or empty.
      * @var string
      */
-    public $HouseWorkType;
+    public $HouseWorkType = 'CONSTRUCTION';
     
     /**
      * Unit price

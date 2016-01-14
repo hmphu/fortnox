@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 18:27:17
+ * @Last Modified time: 2016-01-14 16:53:08
  */
 
 namespace hmphu\fortnox\models;
@@ -168,7 +168,7 @@ class Contract extends BaseModel
      * Language: SV / EN
      * @var string
      */
-    public $Language;
+    public $Language = 'EN';
     
     /**
      * Last invoice date

@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-12 15:29:11
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 17:52:53
+ * @Last Modified time: 2016-01-14 16:55:12
  */
 
 namespace hmphu\fortnox\models;
@@ -330,7 +330,7 @@ class Customer extends BaseModel
 	 * Can be PRIVATE or COMPANY.
 	 * @var	string
 	 */
-	public $Type;
+	public $Type = 'PRIVATE';
 	
 	/**
 	 * VAT number for the customer.
@@ -343,7 +343,7 @@ class Customer extends BaseModel
 	 * Can be SEVAT SEREVERSEDVAT EUREVERSEDVAT EUVAT or EXPORT.
 	 * @var	string
 	 */
-	public $VATType;
+	public $VATType = 'SEVAT';
 	
 	/**
 	 * Visiting address of the customer.

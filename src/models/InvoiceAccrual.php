@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:37:45
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 09:42:24
+ * @Last Modified time: 2016-01-14 16:57:07
  */
 
 namespace hmphu\fortnox\models;
@@ -55,7 +55,7 @@ class InvoiceAccrual extends BaseModel
      * Type of period: MONTHLY / BIMONTHLY / QUARTERLY / SEMIANNUALLY / ANNUALLY / {X}_MONTHS
      * @var string
      */
-    public $Period;
+    public $Period = 'MONTHLY';
     
     /**
      * Account for the revenue, 4 digits

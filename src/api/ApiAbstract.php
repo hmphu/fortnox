@@ -4,17 +4,18 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 13:19:26
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-12 19:30:05
+ * @Last Modified time: 2016-01-14 17:34:15
  */
 
-namespace hmphu\fortnox;
+namespace hmphu\fortnox\api;
 
 use GuzzleHttp\Client;
 use hmphu\fortnox\request\Exception;
+use hmphu\fortnox\FortnoxConfig;
 
 /**
  * Class ApiAbstract
- * @package hmphu\fortnox
+ * @package hmphu\fortnox\api
  */
 abstract class ApiAbstract
 {
@@ -111,12 +112,6 @@ abstract class ApiAbstract
      	$response = $this->call($endpoint, $request);
      	$parsed = $this->parseJsonResponse($response);
      	$items = $parsed[$dataKey];
-     	$totalPages = (int) $parsed['MetaInformation']['@TotalPages'];
-     	for ( $i = 2; $i < $totalPages; $i++ ) {
-     		$request->parameters = array_merge($options, [ 'query' => [ 'page' => $i ] ]);
-     		$moreItems = $this->callJson($endpoint, $request, $dataKey);
-     		$items = array_merge($items, $moreItems);
-     	}
      	return $items;
      }
      

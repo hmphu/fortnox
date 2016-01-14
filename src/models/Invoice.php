@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:37:45
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 09:55:00
+ * @Last Modified time: 2016-01-14 16:56:51
  */
 
 namespace hmphu\fortnox\models;
@@ -309,13 +309,13 @@ class Invoice extends BaseModel
      * Can be INVOICE AGREEMENTINVOICE INTRESTINVOICE SUMMARYINVOICE or CASHINVOICE.
      * @var string
      */
-    public $InvoiceType;
+    public $InvoiceType = 'INVOICE';
     
     /**
      * Language code. Can be SV or EN.
      * @var string
      */
-    public $Language;
+    public $Language = 'SV';
     
     /**
      * Date of last reminder.

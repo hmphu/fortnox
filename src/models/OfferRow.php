@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 10:19:46
+ * @Last Modified time: 2016-01-14 16:58:00
  */
 
 namespace hmphu\fortnox\models;
@@ -84,7 +84,7 @@ class OfferRow extends BaseModel
      * OTHERCOSTS or empty
      * @var string
      */
-    public $HouseWorkType;
+    public $HouseWorkType = 'CONSTRUCTION';
     
     /**
      * Unit price (If empty Fortnox will use the price from the customers price list)

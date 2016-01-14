@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 10:29:19
+ * @Last Modified time: 2016-01-14 16:58:26
  */
 
 namespace hmphu\fortnox\models;
@@ -88,7 +88,7 @@ class OrderRow extends BaseModel
      * CLEANING, TEXTILECLOTHING, COOKING, SNOWPLOWING, GARDENING, BABYSITTING, OTHERCARE, TUTORING, OTHERCOSTS, or empty.
      * @var string
      */
-    public $HouseWorkType;
+    public $HouseWorkType = 'CONSTRUCTION';
     
     /**
      * Ordered quantity

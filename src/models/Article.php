@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:37:45
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 18:08:45
+ * @Last Modified time: 2016-01-14 16:52:39
  */
 
 namespace hmphu\fortnox\models;
@@ -107,7 +107,7 @@ class Article extends BaseModel
      * SNOWPLOWING, GARDENING, BABYSITTING, OTHERCARE, TUTORING, OTHERCOSTS or empty.
      * @var string
      */
-    public $HouseworkType;
+    public $HouseworkType = 'CONSTRUCTION';
     
     /**
      * The manufacturer of the article
@@ -206,7 +206,7 @@ class Article extends BaseModel
      * The type of the article. Can be STOCK or SERVICE.
      * @var string
      */
-    public $Type;
+    public $Type = 'STOCK';
     
     /**
      * Unit code for the article. The code must be of an existing unit.

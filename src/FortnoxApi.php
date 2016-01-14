@@ -3,11 +3,12 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 16:14:20
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 10:22:17
+ * @Last Modified time: 2016-01-14 17:09:37
  */
 
 namespace hmphu\fortnox;
 
+use hmphu\fortnox\api\ApiAbstract;
 use hmphu\fortnox\request\BasicRequest;
 use hmphu\fortnox\request\CustomerRequest;
 use hmphu\fortnox\request\SupplierRequest;
@@ -27,116 +28,13 @@ use hmphu\fortnox\models\Supplier;
  */
 class FortnoxApi extends ApiAbstract
 {
+	public $customer;
     /**
      * @param FortnoxConfig $config
      */
     function __construct(FortnoxConfig $config, $https = true) {
         parent::__construct($config, $https);
-    }
-
-    /**
-     * @return string[][] array of customers
-     */
-    public function getCustomers() {
-    	$request = new BasicRequest();
-        return $this->getPaginated('/customers', $request, 'Customers');
-    }
-
-    /**
-     * @param int $customerNumber
-     * @return string[] customer
-     */
-    public function getCustomer($customerNumber) {
-    	$request = new CustomerRequest();
-        $data = $this->callJson('/customers/' . $customerNumber, $request, 'Customer');
-        if(is_array($data)){
-        	return new Customer($data);
-        }
-    }
-    
-    /**
-     * @param string[] $data customer data
-     * @return string[] customer
-     */
-    public function createCustomer(Customer $data) {
-    	$request = new CustomerRequest($data->toArray());
-    	$request->method = 'POST';
-        $data = $this->callJson('/customers', $request, 'Customer');
-        if(is_array($data)){
-        	return new Customer($data);
-        }
-    }
-
-     /**
-     * @param int $customerNumber
-     * @param string[] $data
-     * @return string[] customer
-     */
-    public function updateCustomer($customerNumber, Customer $data) {
-    	$request = new CustomerRequest($data->toArray());
-    	$request->method = 'PUT';
-        $data = $this->callJson('/customers/' . $customerNumber, $request, 'Customer');
-        if(is_array($data)){
-        	return new Customer($data);
-        }
-    }
-
-    /**
-     * @param $customerNumber
-     * @return string response body
-     */
-    public function deleteCustomer($customerNumber) {
-    	$request = new CustomerRequest();
-    	$request->method = 'DELETE';
-        $response = $this->call('/customers/' . $customerNumber, $request);
-        return  empty($response->getBody()) ? true : (string) $response->getBody();
-    }
-
-    /**
-     * @return string[][] array of suppliers
-     */
-    public function getSuppliers() {
-    	$request = new BasicRequest();
-        return $this->getPaginated('/suppliers', $request, 'Suppliers');
-    }
-
-    /**
-     * @param string $id
-     * @return string[] supplier
-     */
-    public function getSupplier($id) {
-    	$request = new BasicRequest();
-        $data = $this->callJson('/suppliers/' . $id, $request, 'Supplier');
-        if(is_array($data)){
-        	return new Supplier($data);
-        }
-    }
-
-    /**
-     * @param Supplier $data
-     * @return Supplier
-     */
-    public function createSupplier(Supplier $data) {
-    	$request = new SupplierRequest($data->toArray());
-    	$request->method = 'POST';
-        $data = $this->callJson('/suppliers', $request, 'Supplier');
-        if(is_array($data)){
-        	return new Supplier($data);
-        }
-    }
-
-    /**
-     * @param string SupplierNumber
-     * @param Supplier $data
-     * @return Supplier
-     */
-    public function updateSupplier($supplierNumber, Supplier $data) {
-    	$request = new SupplierRequest($data->toArray());
-    	$request->method = 'PUT';
-        $data = $this->callJson('/suppliers/' . $supplierNumber, $request, 'Supplier');
-        if(is_array($data)){
-        	return new Supplier($data);
-        }
+        $this->customer = new \hmphu\fortnox\api\CustomerApi($config, $https);
     }
 
     /**

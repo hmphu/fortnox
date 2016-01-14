@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 18:00:37
+ * @Last Modified time: 2016-01-14 16:52:14
  */
 
 namespace hmphu\fortnox\models;
@@ -74,7 +74,7 @@ class Account extends BaseModel
      * Project settings for the account. Can be ALLOWED MANDATORY or NOTALLOWED
      * @var string
      */
-    public $ProjectSettings;
+    public $ProjectSettings = 'ALLOWED';
     
     /**
      * SRU code
@@ -92,7 +92,7 @@ class Account extends BaseModel
      * Transaction information settings for the account. Can be ALLOWED MANDATORY or NOTALLOWED
      * @var string
      */
-    public $TransactionInformationSettings;
+    public $TransactionInformationSettings = 'ALLOWED';
     
     /**
      * VAT code

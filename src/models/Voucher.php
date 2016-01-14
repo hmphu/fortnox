@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:14:56
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 11:20:03
+ * @Last Modified time: 2016-01-14 17:00:17
  */
 
 namespace hmphu\fortnox\models;
@@ -59,7 +59,7 @@ class Voucher extends BaseModel
      * Can be INVOICE SUPPLIERINVOICE INVOICEPAYMENT SUPPLIERPAYMENT MANUAL CASHINVOICE or ACCRUAL
      * @var string, sortable, read-only
      */
-    private $ReferenceType;
+    private $ReferenceType = 'INVOICE';
     
     /**
      * Date of the transaction.

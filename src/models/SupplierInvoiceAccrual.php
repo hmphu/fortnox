@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 10:43:50
+ * @Last Modified time: 2016-01-14 16:59:26
  */
 
 namespace hmphu\fortnox\models;
@@ -57,7 +57,7 @@ class SupplierInvoiceAccrual extends BaseModel
      * Can be: MONTHLY / BIMONTHLY / QUARTERLY / SEMIANNUALLY / ANNUALLY / {X}_MONTHS
      * @var string
      */
-    public $Period;
+    public $Period = 'MONTHLY';
     
     /**
      * @var object

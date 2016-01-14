@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:37:45
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 18:14:48
+ * @Last Modified time: 2016-01-14 16:53:26
  */
 
 namespace hmphu\fortnox\models;
@@ -52,7 +52,7 @@ class ContractAccrual extends BaseModel
      * Type of period: MONTHLY / BIMONTHLY / QUARTERLY / SEMIANNUALLY / ANNUALLY
      * @var string
      */
-    private $Period;
+    private $Period = 'MONTHLY';
     
     /**
      * Total times of accruals

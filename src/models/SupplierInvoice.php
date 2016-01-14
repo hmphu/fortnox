@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 10:57:02
+ * @Last Modified time: 2016-01-14 16:59:15
  */
 
 namespace hmphu\fortnox\models;
@@ -164,7 +164,7 @@ class SupplierInvoice extends BaseModel
      * Sales type. Can be STOCK/SERVICE. SERVICE requires VATType=EUINTERNAL.
      * @var string
      */
-    public $SalesType;
+    public $SalesType = 'SERVICE';
     
     /**
      * @var object
@@ -198,7 +198,7 @@ class SupplierInvoice extends BaseModel
     /**
      * Vat type. Can be NORMAL/EUINTERNAL/REVERSE
      */
-    private $VATType;
+    private $VATType = 'NORMAL';
     
     /**
      * Customer reference

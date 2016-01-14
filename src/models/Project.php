@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-12 19:15:21
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 10:39:49
+ * @Last Modified time: 2016-01-14 16:58:42
  */
 
 namespace hmphu\fortnox\models;
@@ -62,7 +62,7 @@ class Project extends BaseModel
      * Status of the project. Can be: NOTSTARTED / ONGOING / COMPLETED
      * @var string
      */
-    public $Status;
+    public $Status = 'NOTSTARTED';
     
     /**
      * Start date of the project

@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:14:56
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 11:11:16
+ * @Last Modified time: 2016-01-14 17:00:04
  */
 
 namespace hmphu\fortnox\models;
@@ -62,7 +62,7 @@ class TaxReduction extends BaseModel
      * Document type. Can be; OFFER / ORDER / INVOICE
      * @var string
      */
-    public $ReferenceDocumentType;
+    public $ReferenceDocumentType = 'OFFER';
     
     /**
      * Reference number
@@ -92,7 +92,7 @@ class TaxReduction extends BaseModel
      * Type of reduction. Can be: ROT / RUT
      * @var string
      */
-    public $TypeOfReduction;
+    public $TypeOfReduction = 'ROT';
     
     /**
      * Voucher number

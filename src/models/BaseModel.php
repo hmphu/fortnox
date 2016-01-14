@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-12 17:45:55
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 17:53:03
+ * @Last Modified time: 2016-01-14 17:10:42
  */
 
 namespace hmphu\fortnox\models;
@@ -48,7 +48,8 @@ abstract class BaseModel
      * Convert to array
      */
     public function toArray() {
-        return call_user_func('get_object_vars', $this);
+        $fields = call_user_func('get_object_vars', $this);
+        return array_filter($fields);
     }
     
     /**

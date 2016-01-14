@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 11:01:25
+ * @Last Modified time: 2016-01-14 16:59:49
  */
 
 namespace hmphu\fortnox\models;
@@ -41,7 +41,7 @@ class SupplierInvoiceRow extends BaseModel
      * PRC = Reverse VAT outgoing
      * @var string
      */
-    public $Code;
+    public $Code = 'TOT';
     
     /**
      * Cost center code
