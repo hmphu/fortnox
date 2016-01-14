@@ -1,5 +1,5 @@
 # PHP Fortnox
-PHP wrapper for Fortnox API
+PHP wrapper for Fortnox API. IN DEVELOPMENT - DO NOT USE!!!!
 
 ### Get your Access Token
 ```
