@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:35:10
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-13 18:01:52
+ * @Last Modified time: 2016-01-14 18:29:48
  */
 
 namespace hmphu\fortnox\models;
@@ -30,15 +30,15 @@ class Folder extends BaseModel
     
     /**
      * List of files
-     * @var string
+     * @var object[]
      */
-    private $Files;
+    private $Files = [];
     
     /**
      * List of folders
-     * @var string
+     * @var object[]
      */
-    private $Folders;
+    private $Folders = [];
     
     /**
      * Id of the folder
@@ -51,4 +51,20 @@ class Folder extends BaseModel
      * @var string
      */
     public $Name;
+
+    public function __construct1(array $data) {
+		parent::__construct1($data);
+		
+		$files = [];
+		foreach($this->Files as $file){
+			$files = new Folder($file);
+		}
+		$this->Files = $files;
+
+		$folders = [];
+		foreach($this->Folders as $folder){
+			$folders = new Folder($folder);
+		}
+		$this->Folders = $folders;
+	}
 }

@@ -3,7 +3,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-14 11:52:27
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 18:25:21
+ * @Last Modified time: 2016-01-14 18:32:24
  */
 
 namespace hmphu\fortnox\api;
@@ -11,22 +11,23 @@ use hmphu\fortnox\request\BasicRequest;
 use hmphu\fortnox\request\PaginatedRequest;
 use hmphu\fortnox\request\SupplierRequest;
 use hmphu\fortnox\models\BaseModel;
+use hmphu\fortnox\models\Folder;
 
 /**
- * Class SupplierApi
+ * Class ArchiveApi
  * @package hmphu\fortnox\api
  */
-class SupplierApi extends ApiAbstract implements ApiInterface
+class ArchiveApi extends ApiAbstract implements ApiInterface
 {
     /**
      * @return string[][] array of suppliers
      */
     public function all($page = 0, $limit = 10) {
     	$request = new PaginatedRequest($page, $limit);
-        $datas = $this->getPaginated('/suppliers', $request, 'Suppliers');
+        $datas = $this->getPaginated('/archive', $request, 'Folder');
         if(is_array($datas)){
         	foreach($datas as $key => $data){
-        		$datas[$key] = new Supplier($data);
+        		$datas[$key] = new Folder($data);
         	}
         }
     	return $datas;
@@ -38,9 +39,9 @@ class SupplierApi extends ApiAbstract implements ApiInterface
      */
     public function get($id) {
     	$request = new BasicRequest();
-        $data = $this->callJson('/suppliers/' . $id, $request, 'Supplier');
+        $data = $this->callJson('/archive/' . $id, $request, 'Folder');
         if(is_array($data)){
-        	return new Supplier($data);
+        	return new Folder($data);
         }
     }
 
@@ -49,11 +50,11 @@ class SupplierApi extends ApiAbstract implements ApiInterface
      * @return Supplier
      */
     public function create(BaseModel $data) {
-    	$request = new SupplierRequest($data->toArray());
+    	$request = new FolderRequest($data->toArray());
     	$request->method = 'POST';
-        $data = $this->callJson('/suppliers', $request, 'Supplier');
+        $data = $this->callJson('/archive', $request, 'Folder');
         if(is_array($data)){
-        	return new Supplier($data);
+        	return new Folder($data);
         }
     }
 
@@ -63,11 +64,11 @@ class SupplierApi extends ApiAbstract implements ApiInterface
      * @return Supplier
      */
     public function update($supplierNumber, BaseModel $data) {
-    	$request = new SupplierRequest($data->toArray());
+    	$request = new FolderRequest($data->toArray());
     	$request->method = 'PUT';
-        $data = $this->callJson('/suppliers/' . $supplierNumber, $request, 'Supplier');
+        $data = $this->callJson('/archive/' . $supplierNumber, $request, 'Folder');
         if(is_array($data)){
-        	return new Supplier($data);
+        	return new Folder($data);
         }
     }
 

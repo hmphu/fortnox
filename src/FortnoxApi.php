@@ -3,7 +3,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 16:14:20
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 17:09:37
+ * @Last Modified time: 2016-01-14 18:41:07
  */
 
 namespace hmphu\fortnox;
@@ -29,12 +29,26 @@ use hmphu\fortnox\models\Supplier;
 class FortnoxApi extends ApiAbstract
 {
 	public $customer;
+	public $article;
+	public $project;
+	public $supplier;
+	public $account;
+	public $archive;
+	public $articlefileconnection;
+	public $articlurleconnection;
     /**
      * @param FortnoxConfig $config
      */
     function __construct(FortnoxConfig $config, $https = true) {
         parent::__construct($config, $https);
         $this->customer = new \hmphu\fortnox\api\CustomerApi($config, $https);
+        $this->article = new \hmphu\fortnox\api\ArticleApi($config, $https);
+        $this->project = new \hmphu\fortnox\api\ProjectApi($config, $https);
+        $this->supplier = new \hmphu\fortnox\api\SupplierApi($config, $https);
+        $this->account = new \hmphu\fortnox\api\AccountApi($config, $https);
+        $this->archive = new \hmphu\fortnox\api\ArchiveApi($config, $https);
+        $this->articlefileconnection = new \hmphu\fortnox\api\ArticleFileConnectionApi($config, $https);
+        $this->articleurlconnection = new \hmphu\fortnox\api\ArticleUrlConnectionApi($config, $https);
     }
 
     /**
@@ -126,61 +140,6 @@ class FortnoxApi extends ApiAbstract
     	$request = new SupplierInvoiceRequest($data);
     	$request->method = 'PUT';
         return $this->callJson('/supplierinvoices/' . $id, $request, 'SupplierInvoice');
-    }
-
-     /**
-     * @return string[][] array of projects
-     */
-    public function getProjects() {
-    	$request = new ProjectRequest();
-        return $this->callJson('/projects', $request, 'Projects');
-    }
-
-    /**
-     * @param int $projectNumber
-     * @return string[] project
-     */
-    public function getProject($projectNumber) {
-    	$request = new ProjectRequest();
-        $data = $this->callJson('/projects/' . $projectNumber, $request, 'Project');
-        if(is_array($data)){
-    		return new Project($data);
-    	}
-    }
-
-    /**
-     * @param string[] $data
-     * @return string[] project
-     */
-    public function createProject(Project $data) {
-    	$request = new ProjectRequest($data->toArray());
-    	$request->method = 'POST';
-
-        return $this->callJson('/projects', $request, 'Project');
-    }
-
-    /**
-     * @param int $projectNumber
-     * @param Project $data
-     * @return mixed
-     */
-    public function updateProject($projectNumber, Project $data) {
-    	$request = new ProjectRequest($data->toArray());
-    	$request->method = 'PUT';
-
-        return $this->callJson('/projects/' . $projectNumber, $request, 'Project');
-    }
-
-    /**
-     * @param int $projectNumber
-     * @return string
-     */
-    public function deleteProject($projectNumber) {
-    	$request = new ProjectRequest();
-    	$request->method = 'DELETE';
-        $response = $this->call('/projects/' . $projectNumber, $request);
-        
-        return (string) $response->getBody();
     }
 
      /**

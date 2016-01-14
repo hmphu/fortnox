@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-12 17:45:55
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 17:53:19
+ * @Last Modified time: 2016-01-14 18:28:16
  */
 
 namespace hmphu\fortnox\models;
@@ -34,7 +34,13 @@ abstract class BaseModel
     /**
      * Parse data from array
      */
-    public function __construct1(array $data) {
+    public function __construct1($data) {
+    	if(empty($data))
+    		return null;
+    	
+    	if(!is_array($data))
+    		return $this;
+
         foreach ($data as $property => $value) {
             if (strpos($property, '@') === 0) $property = ucfirst(substr($property, 1));
             

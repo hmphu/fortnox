@@ -3,10 +3,12 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-14 11:52:27
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 17:04:51
+ * @Last Modified time: 2016-01-14 18:20:25
  */
 
 namespace hmphu\fortnox\api;
+
+use hmphu\fortnox\models\AccountCharts;
 
 /**
  * Class AccountCharts
@@ -19,7 +21,13 @@ class AccountCharts extends ApiAbstract implements ApiInterface
 	 */
 	public function all(){
 		$request = new BasicRequest();
-        return $this->getPaginated('/accountcharts', $request, 'AccountCharts');
+        $datas = $this->getPaginated('/accountcharts', $request, 'AccountCharts');
+        if(is_array($datas)){
+        	foreach($datas as $key => $data){
+        		$datas[$key] = new AccountCharts($data);
+        	}
+        }
+    	return $datas;
 	}
 	/**
 	 * @return object
