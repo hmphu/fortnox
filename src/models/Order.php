@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 10:25:55
+ * @Last Modified time: 2016-01-14 18:01:09
  */
 
 namespace hmphu\fortnox\models;
@@ -250,9 +250,9 @@ class Order extends BaseModel
     private $OfferReference;
     
     /**
-     * @var object
+     * @var object[]
      */
-    private $OrderRows;
+    private $OrderRows = [];
     
     /**
      * Organization number
@@ -309,9 +309,9 @@ class Order extends BaseModel
     private $RoundOff;
     
     /**
-     * @var object
+     * @var object[]
      */
-    private $Rows;
+    private $Rows = [];
     
     /**
      * If document is printed or e-mailed
@@ -378,4 +378,20 @@ class Order extends BaseModel
      * @var string
      */
     public $ZipCode;
+
+    public function __construct1(array $data) {
+		parent::__construct1($data);
+		$this->EmailInformation = new EmailInformation($this->EmailInformation);
+		$orderRows = [];
+		foreach($this->OrderRows as $row){
+			$orderRows[] = new OrderRow($row);
+		}
+		$this->OrderRows = $orderRows;
+		
+		$rows = [];
+		foreach($this->Rows as $row){
+			$rows = new OrderRow($row);
+		}
+		$this->Rows = $rows;
+	}
 }

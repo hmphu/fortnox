@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 10:12:07
+ * @Last Modified time: 2016-01-14 18:01:01
  */
 
 namespace hmphu\fortnox\models;
@@ -298,9 +298,9 @@ class Offer extends BaseModel
     private $RoundOff;
     
     /**
-     * @var object
+     * @var object[]
      */
-    private $OfferRows;
+    private $OfferRows = [];
     
     /**
      * If document is printed or e-mailed to customer
@@ -361,4 +361,14 @@ class Offer extends BaseModel
      * @var string
      */
     public $ZipCode;
+
+    public function __construct1(array $data) {
+		parent::__construct1($data);
+		$this->EmailInformation = new EmailInformation($this->EmailInformation);
+		$offerRows = [];
+		foreach($this->OfferRows as $row){
+			$offerRows[] = new OfferRow($row);
+		}
+		$this->OfferRows = $offerRows;
+	}
 }

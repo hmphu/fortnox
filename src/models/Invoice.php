@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:37:45
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 16:56:51
+ * @Last Modified time: 2016-01-14 17:55:07
  */
 
 namespace hmphu\fortnox\models;
@@ -508,4 +508,10 @@ class Invoice extends BaseModel
      * @var string, 1024 characters
      */
     public $ZipCode;
+
+    public function __construct1(array $data) {
+		parent::__construct1($data);
+		$this->EDIInformation = new EDIInformation($this->EDIInformation);
+		$this->EmailInformation = new EmailInformation($this->EmailInformation);
+	}
 }

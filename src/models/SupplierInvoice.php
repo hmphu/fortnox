@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 16:59:15
+ * @Last Modified time: 2016-01-14 18:02:04
  */
 
 namespace hmphu\fortnox\models;
@@ -167,9 +167,9 @@ class SupplierInvoice extends BaseModel
     public $SalesType = 'SERVICE';
     
     /**
-     * @var object
+     * @var object[]
      */
-    private $SupplierInvoiceRows;
+    private $SupplierInvoiceRows = [];
     
     /**
      * Supplier number
@@ -205,4 +205,13 @@ class SupplierInvoice extends BaseModel
      * @var string
      */
     public $YourReference;
+
+    public function __construct1(array $data) {
+		parent::__construct1($data);
+		$supplierInvoiceRows = [];
+		foreach($this->SupplierInvoiceRows as $row){
+			$supplierInvoiceRows[] = new SupplierInvoiceRow($row);
+		}
+		$this->SupplierInvoiceRows = $supplierInvoiceRows;
+	}
 }

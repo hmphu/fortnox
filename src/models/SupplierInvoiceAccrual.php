@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:28:47
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 16:59:26
+ * @Last Modified time: 2016-01-14 18:02:39
  */
 
 namespace hmphu\fortnox\models;
@@ -60,9 +60,9 @@ class SupplierInvoiceAccrual extends BaseModel
     public $Period = 'MONTHLY';
     
     /**
-     * @var object
+     * @var object[]
      */
-    private $SupplierInvoiceAccrualRows;
+    private $SupplierInvoiceAccrualRows = [];
     
     /**
      * Start date
@@ -87,4 +87,13 @@ class SupplierInvoiceAccrual extends BaseModel
      * @var boolean
      */
     public $VATIncluded;
+
+    public function __construct1(array $data) {
+		parent::__construct1($data);
+		$supplierInvoiceAccrualRows = [];
+		foreach($this->SupplierInvoiceAccrualRows as $row){
+			$supplierInvoiceAccrualRows[] = new SupplierInvoiceAccrualRow($row);
+		}
+		$this->SupplierInvoiceAccrualRows = $supplierInvoiceAccrualRows;
+	}
 }
