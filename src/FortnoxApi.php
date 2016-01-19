@@ -3,7 +3,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 16:14:20
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 18:41:07
+ * @Last Modified time: 2016-01-18 17:16:33
  */
 
 namespace hmphu\fortnox;
@@ -36,6 +36,7 @@ class FortnoxApi extends ApiAbstract
 	public $archive;
 	public $articlefileconnection;
 	public $articlurleconnection;
+	public $invoice;
     /**
      * @param FortnoxConfig $config
      */
@@ -49,6 +50,7 @@ class FortnoxApi extends ApiAbstract
         $this->archive = new \hmphu\fortnox\api\ArchiveApi($config, $https);
         $this->articlefileconnection = new \hmphu\fortnox\api\ArticleFileConnectionApi($config, $https);
         $this->articleurlconnection = new \hmphu\fortnox\api\ArticleUrlConnectionApi($config, $https);
+        $this->invoice = new \hmphu\fortnox\api\InvoiceApi($config, $https);
     }
 
     /**

@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-12 17:45:55
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 18:28:16
+ * @Last Modified time: 2016-01-18 17:23:40
  */
 
 namespace hmphu\fortnox\models;

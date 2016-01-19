@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:37:45
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 16:57:36
+ * @Last Modified time: 2016-01-18 17:32:36
  */
 
 namespace hmphu\fortnox\models;
@@ -20,13 +20,13 @@ class InvoiceRow extends BaseModel
      * Account number (If empty Fortnox will use setting on article)
      * @var number
      */
-    private $AccountNumber;
+    public $AccountNumber;
     
     /**
      * Article number
      * @var number
      */
-    private $ArticleNumber;
+    public $ArticleNumber;
     
     /**
      * Contribution Percent
@@ -69,7 +69,7 @@ class InvoiceRow extends BaseModel
      * Can be AMOUNT / PERCENT
      * @var number
      */
-    public $DiscountType = 'AMOUNT';
+    public $DiscountType;
     
     /**
      * @var boolean
@@ -89,7 +89,7 @@ class InvoiceRow extends BaseModel
      * TUTORING, OTHERCOSTS or empty.
      * @var string
      */
-    public $HouseWorkType = 'CONSTRUCTION';
+    public $HouseWorkType;
     
     /**
      * Unit price

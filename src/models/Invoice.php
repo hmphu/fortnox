@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-13 10:37:45
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 17:55:07
+ * @Last Modified time: 2016-01-18 17:34:49
  */
 
 namespace hmphu\fortnox\models;
@@ -511,6 +511,13 @@ class Invoice extends BaseModel
 
     public function __construct1(array $data) {
 		parent::__construct1($data);
+		if(is_array($this->InvoiceRows) && !empty($this->InvoiceRows)){
+			$invoiceRows = [];
+			foreach($this->InvoiceRows as $row){
+				$invoiceRows[] = new InvoiceRow($row);
+			}
+			$this->InvoiceRows = $invoiceRows;
+		}
 		$this->EDIInformation = new EDIInformation($this->EDIInformation);
 		$this->EmailInformation = new EmailInformation($this->EmailInformation);
 	}
