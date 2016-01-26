@@ -3,7 +3,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-14 11:52:27
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 18:25:21
+ * @Last Modified time: 2016-01-26 14:34:16
  */
 
 namespace hmphu\fortnox\api;
@@ -19,10 +19,13 @@ use hmphu\fortnox\models\BaseModel;
 class SupplierApi extends ApiAbstract implements ApiInterface
 {
     /**
+     * @param $page Current page
+	 * @param $limit Total items per page
+	 * @param $query Search & Filters param
      * @return string[][] array of suppliers
      */
-    public function all($page = 0, $limit = 10) {
-    	$request = new PaginatedRequest($page, $limit);
+    public function all($page = 0, $limit = 10, $query = []) {
+    	$request = new PaginatedRequest($page, $limit, $query);
         $datas = $this->getPaginated('/suppliers', $request, 'Suppliers');
         if(is_array($datas)){
         	foreach($datas as $key => $data){

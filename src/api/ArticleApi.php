@@ -3,7 +3,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-14 11:52:27
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 18:40:44
+ * @Last Modified time: 2016-01-26 14:33:47
  */
 
 namespace hmphu\fortnox\api;
@@ -21,10 +21,13 @@ use hmphu\fortnox\models\Article;
 class ArticleApi extends ApiAbstract implements ApiInterface
 {
 	/**
+	 * @param $page Current page
+	 * @param $limit Total items per page
+	 * @param $query Search & Filters param
      * @return array of customers
      */
-    public function all($page = 0, $limit = 10) {
-    	$request = new PaginatedRequest($page, $limit);
+    public function all($page = 0, $limit = 10, $query = []) {
+    	$request = new PaginatedRequest($page, $limit, $query);
         $datas = $this->getPaginated('/articles', $request, 'Articles');
         if(is_array($datas)){
         	foreach($datas as $key => $data){

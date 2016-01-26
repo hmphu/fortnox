@@ -3,7 +3,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 16:14:20
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-18 17:24:50
+ * @Last Modified time: 2016-01-25 16:49:37
  */
 
 namespace hmphu\fortnox;
@@ -20,5 +20,10 @@ final class Util{
     		$arr[$key] = $val;
     	}
     	return $removeEmpty ? array_filter($arr) : $arr;
+	}
+
+	public static function removeUnicodeSequences($string) {
+	   $string = preg_replace("/\\\\\\\\u([a-f0-9]{4})/e", "iconv('UCS-4LE','UTF-8',pack('V', hexdec('U$1')))", json_encode($string));
+	   return $string;
 	}
 }

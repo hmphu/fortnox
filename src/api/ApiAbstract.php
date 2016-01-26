@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 13:19:26
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 18:10:56
+ * @Last Modified time: 2016-01-25 16:46:11
  */
 
 namespace hmphu\fortnox\api;
@@ -12,6 +12,7 @@ namespace hmphu\fortnox\api;
 use GuzzleHttp\Client;
 use hmphu\fortnox\request\Exception;
 use hmphu\fortnox\FortnoxConfig;
+use hmphu\fortnox\Util;
 
 /**
  * Class ApiAbstract
@@ -77,7 +78,7 @@ abstract class ApiAbstract
     	} catch (\Exception $e) {
     		preg_match('/{"ErrorInformation":{"Error":(\d+),"Message":"(.+)","Code":(\d+)}/i', $e->getMessage(), $matches);
     		if(isset($matches[0])){
-    			throw new Exception(sprintf("ERROR: %s (%s)",$matches[2],$matches[3]),$matches[3]);
+    			throw new Exception(sprintf("ERROR: %s (%s)",Util::removeUnicodeSequences($matches[2]),$matches[3]),$matches[3]);
     		}
     		throw $e;
     	}
