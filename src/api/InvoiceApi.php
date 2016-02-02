@@ -3,7 +3,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-14 11:52:27
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-26 15:02:23
+ * @Last Modified time: 2016-02-01 17:53:53
  */
 
 namespace hmphu\fortnox\api;
@@ -142,8 +142,10 @@ class InvoiceApi extends ApiAbstract implements ApiInterface
 	public function printPdf($invoiceNumber, $saveTo = null){
 		$request = new InvoiceRequest();
 		if(is_string($saveTo)){
-			$request->parameters['sink'] = $saveTo;
 			$data = $this->call('/invoices/' . $invoiceNumber . '/print', $request);
+			$fp = fopen($saveTo, 'w');
+			fwrite($fp, $data->getBody());
+			fclose($fp);
 			return true;
 		}
 		else{
