@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-12 15:29:11
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-14 17:55:16
+ * @Last Modified time: 2016-02-19 18:56:10
  */
 
 namespace hmphu\fortnox\models;
@@ -403,7 +403,9 @@ class Customer extends BaseModel
 
 	public function __construct1(array $data) {
 		parent::__construct1($data);
-		$this->DefaultDeliveryTypes = new DefaultDeliveryTypes($this->DefaultDeliveryTypes);
-		$this->DefaultTemplates = new DefaultTemplates($this->DefaultTemplates);
+		if($this->DefaultDeliveryTypes)
+			$this->DefaultDeliveryTypes = new DefaultDeliveryTypes($this->DefaultDeliveryTypes);
+		if($this->DefaultTemplates)
+			$this->DefaultTemplates = new DefaultTemplates($this->DefaultTemplates);
 	}
 }

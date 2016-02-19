@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-12 17:45:55
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-01-18 17:23:40
+ * @Last Modified time: 2016-02-19 18:55:01
  */
 
 namespace hmphu\fortnox\models;
@@ -34,7 +34,7 @@ abstract class BaseModel
     /**
      * Parse data from array
      */
-    public function __construct1($data) {
+    public function __construct1(array $data) {
     	if(empty($data))
     		return null;
     	
