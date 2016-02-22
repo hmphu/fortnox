@@ -4,7 +4,7 @@
  * @Author: Phu Hoang
  * @Date:   2016-01-11 13:19:26
  * @Last Modified by:   Phu Hoang
- * @Last Modified time: 2016-02-01 17:12:23
+ * @Last Modified time: 2016-02-22 11:50:12
  */
 
 namespace hmphu\fortnox\api;
@@ -56,8 +56,8 @@ abstract class ApiAbstract
      * @return mixed
      */
     public function call($endpoint, $request) {
-    	$client = new Client();
-
+    	$client = new Client(['verify' => false]);
+    	
     	$parameters = array_merge($this->config->getParameterArray(), $request->getParameterArray());
     	try {
     		$res = $client->request(
