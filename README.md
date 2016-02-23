@@ -3,6 +3,24 @@
 Unofficial PHP wrapper for Fortnox API
 http://developer.fortnox.se/getting-started/
 
+## Installation
+
+The preferred way to install this extension is through composer.
+
+Either run
+
+```
+php composer.phar require --prefer-dist hmphu/fortnox
+```
+
+or add
+
+```
+"hmphu/fortnox": "*"
+```
+
+to the require section of your composer.json.
+
 ## Get a developer account
 
 First of all you need to register as a developer.
