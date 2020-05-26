@@ -11,7 +11,7 @@ namespace hmphu\fortnox;
 final class Util{
 	public static function convertObjectToArray($obj, $removeEmpty = false) {
     	$arrObj = is_object($obj) ? get_object_vars($obj) : $obj;
-    	
+
     	if($removeEmpty)
     		$arrObj = array_filter($arrObj);
     	$arr = [];
@@ -23,7 +23,8 @@ final class Util{
 	}
 
 	public static function removeUnicodeSequences($string) {
-	   $string = preg_replace("/\\\\\\\\u([a-f0-9]{4})/e", "iconv('UCS-4LE','UTF-8',pack('V', hexdec('U$1')))", json_encode($string));
-	   return $string;
+        return preg_replace_callback("/\\\\\\\\u([a-f0-9]{4})/", function ($m) {
+	       return iconv('UCS-4LE','UTF-8', pack('V', hexdec('U'.$m[1])));
+	   }, json_encode($string));
 	}
 }
