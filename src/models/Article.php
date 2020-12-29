@@ -21,6 +21,13 @@ class Article extends BaseModel
      * @var string, read-only
      */
     private $Url;
+
+    /**
+     * Active state.
+     * 	boolean, true/false If the article is active
+     * @var boolean
+     */
+    public $Active;
     
     /**
      * Article number.
